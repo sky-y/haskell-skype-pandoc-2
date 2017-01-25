@@ -102,7 +102,7 @@ Skype と Slack を用います。**Skype は必須**です。詳しい使用目
 
 #### スライド
 
-GitHub Pagesにて公開
+GitHub Pagesにてします。現在作成中ですが、当日も下記のアドレスにアップします。
 
 - スライド(HTML/reveal.js): <https://sky-y.github.io/haskell-skype-pandoc-2/>
 - スライドのMarkdown(Pandoc)ソース: [haskell-skype-pandoc-2/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-2/blob/master/index_github.md)
