@@ -1,5 +1,5 @@
 --- 2017-01-20/connpass/connpass_body.md	2017-01-20 19:25:39.000000000 +0900
-+++ 2017-02-17/connpass/connpass_body.md	2017-01-26 01:17:33.000000000 +0900
++++ 2017-02-17/connpass/connpass_body.md	2017-01-26 01:31:12.000000000 +0900
 @@ -1,27 +1,67 @@
  ## 内容
  
@@ -128,13 +128,13 @@
  #### スライド
  
 -GitHub Pagesにて公開しています。合わせて参考にしてください。
-+GitHub Pagesにて公開
++GitHub Pagesにてします。現在作成中ですが、当日も下記のアドレスにアップします。
  
 -- スライド(HTML/reveal.js): <https://sky-y.github.io/haskell-skype-pandoc-1/>
 -- スライドのMarkdown(Pandoc)ソース: [haskell-skype-pandoc-1/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-1/blob/master/index_github.md)
 -- GitHubリポジトリ全体: [sky-y/haskell-skype-pandoc-1](https://github.com/sky-y/haskell-skype-pandoc-1)
-+- スライド(HTML/reveal.js): <https://sky-y.github.io/haskell-skype-pandoc-2/>
-+- スライドのMarkdown(Pandoc)ソース: [haskell-skype-pandoc-2/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-2/blob/master/index_github.md)
++- スライド(HTMLプレゼンテーション): <https://sky-y.github.io/haskell-skype-pandoc-2/>
++- スライド(復習用): [haskell-skype-pandoc-2/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-2/blob/master/index_github.md)
 +- GitHubリポジトリ全体: [sky-y/haskell-skype-pandoc-2](https://github.com/sky-y/haskell-skype-pandoc-2)
  
  その他の注意事項
