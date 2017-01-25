@@ -1,7 +1,7 @@
 ---
 title: Pandocチュートリアル 第2回 HaskellでPandocフィルタを実装しよう
 author: 藤原 惟 / すかいゆき (@sky\_y)
-date: 2017年1月20日
+date: 2017年2月17日
 revealjs-url: reveal.js-3.4.0
 theme: sky-sky-y
 transition: fade
