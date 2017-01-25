@@ -104,8 +104,8 @@ Skype と Slack を用います。**Skype は必須**です。詳しい使用目
 
 GitHub Pagesにてします。現在作成中ですが、当日も下記のアドレスにアップします。
 
-- スライド(HTML/reveal.js): <https://sky-y.github.io/haskell-skype-pandoc-2/>
-- スライドのMarkdown(Pandoc)ソース: [haskell-skype-pandoc-2/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-2/blob/master/index_github.md)
+- スライド(HTMLプレゼンテーション): <https://sky-y.github.io/haskell-skype-pandoc-2/>
+- スライド(復習用): [haskell-skype-pandoc-2/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-2/blob/master/index_github.md)
 - GitHubリポジトリ全体: [sky-y/haskell-skype-pandoc-2](https://github.com/sky-y/haskell-skype-pandoc-2)
 
 その他の注意事項
