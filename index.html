@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="藤原 惟 / すかいゆき (@sky_y)">
+  <title>Pandocチュートリアル 第2回 HaskellでPandocフィルタを実装しよう</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js-3.4.0/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js-3.4.0/css/theme/sky-sky-y.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.4.0/css/print/pdf.css' : 'reveal.js-3.4.0/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js-3.4.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Pandocチュートリアル 第2回 HaskellでPandocフィルタを実装しよう</h1>
+  <p class="author">藤原 惟 / すかいゆき (<span class="citation" data-cites="sky">@sky</span>_y)</p>
+  <p class="date">2017年1月20日</p>
+</section>
+
+<section id="自己紹介" class="slide level1">
+<h1>自己紹介</h1>
+<ul>
+<li>名前
+<ul>
+<li>藤原 惟</li>
+<li>すかいゆき</li>
+<li>Yuki Fujiwara （本名）</li>
+</ul></li>
+<li>職業
+<ul>
+<li>フリープログラマ</li>
+<li>専門学校 非常勤講師</li>
+</ul></li>
+</ul>
+</section>
+<section id="pandocに関する活動" class="slide level1">
+<h1>Pandocに関する活動</h1>
+<ul>
+<li>Qiitaを中心に記事執筆
+<ul>
+<li><a href="http://qiita.com/sky_y/items/80bcd0f353ef5b8980ee">多様なフォーマットに対応！ドキュメント変換ツールPandocを知ろう - Qiita</a></li>
+</ul></li>
+<li>Pandocユーザーズガイドを和訳
+<ul>
+<li><a href="http://sky-y.github.io/site-pandoc-jp/users-guide/">Pandoc ユーザーズガイド 日本語版</a></li>
+<li>バージョンが古くなったので、改訂を予定</li>
+</ul></li>
+</ul>
+</section>
+<section id="発表を始めます" class="slide level1">
+<h1>発表を始めます</h1>
+</section>
+<section id="pandoc公式サイト" class="slide level1">
+<h1>Pandoc公式サイト</h1>
+<ul>
+<li><a href="http://pandoc.org/index.html">Pandoc - About pandoc</a></li>
+<li>ユーザーズガイド
+<ul>
+<li><a href="http://pandoc.org/MANUAL.html">Pandoc - Pandoc User’s Guide</a></li>
+<li><a href="http://sky-y.github.io/site-pandoc-jp/users-guide/">Pandoc ユーザーズガイド 日本語版</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p>（ここに続きを書きます）</p>
+</section>
+<section id="質問作業もくもく会" class="slide level1">
+<h1>質問・作業・もくもく会</h1>
+<ul>
+<li>Slackにて受け付けます （<code>#field</code>）</li>
+<li>TwitterでもOKです
+<ul>
+<li><a href="https://twitter.com/sky_y">@sky_y | Twitter</a></li>
+</ul></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js-3.4.0/lib/js/head.min.js"></script>
+  <script src="reveal.js-3.4.0/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'fast', // default/fast/slow
+        // Factor of the display size that should remain empty around the content
+        margin: 0,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js-3.4.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js-3.4.0/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js-3.4.0/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
