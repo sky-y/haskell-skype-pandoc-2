@@ -10,6 +10,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="reveal.js-3.4.0/css/reveal.css">
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="reveal.js-3.4.0/css/theme/sky-sky-y.css" id="theme">
   <!-- Printing and PDF exports -->
   <script>
@@ -33,13 +70,13 @@
   <p class="date">2017年2月17日</p>
 </section>
 
-<section id="自己紹介" class="slide level1">
+<section id="self-intro" class="slide level1">
 <h1>自己紹介</h1>
 <ul>
 <li>名前
 <ul>
 <li>藤原 惟</li>
-<li>すかいゆき</li>
+<li>すかいゆき (<a href="https://twitter.com/sky_y">@sky_y</a>)</li>
 <li>Yuki Fujiwara （本名）</li>
 </ul></li>
 <li>職業
@@ -49,7 +86,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="pandocに関する活動" class="slide level1">
+<section id="pandoc-activity" class="slide level1">
 <h1>Pandocに関する活動</h1>
 <ul>
 <li>Qiitaを中心に記事執筆
@@ -63,10 +100,25 @@
 </ul></li>
 </ul>
 </section>
-<section id="発表を始めます" class="slide level1">
+<section id="begin-presentation" class="slide level1">
 <h1>発表を始めます</h1>
 </section>
-<section id="pandoc公式サイト" class="slide level1">
+<section id="tutorial-overview" class="slide level1">
+<h1>このチュートリアルでやること（2回分の概要）</h1>
+<ul>
+<li>第1回（今回） Pandocでドキュメントを変換しよう
+<ul>
+<li>Pandocをツールとして使う（入門編、第2回の基礎知識）</li>
+</ul></li>
+<li><strong>第2回 HaskellでPandocを拡張してみよう</strong> （←いまここ）
+<ul>
+<li>Haskellのやさしい入門（を目指します）</li>
+<li>「日常的な実用言語」としてのHaskellを体験してもらいたい</li>
+<li>Pandocのソースコードも少し読みます</li>
+</ul></li>
+</ul>
+</section>
+<section id="pandoc-official" class="slide level1">
 <h1>Pandoc公式サイト</h1>
 <ul>
 <li><a href="http://pandoc.org/index.html">Pandoc - About pandoc</a></li>
@@ -77,11 +129,223 @@
 </ul></li>
 </ul>
 </section>
-<section class="slide level1">
-
-<p>（ここに続きを書きます）</p>
+<section id="head-pandoc-in-short" class="slide level1">
+<h1>Pandocとは（第1回の短いおさらい）</h1>
 </section>
-<section id="質問作業もくもく会" class="slide level1">
+<section id="pandoc-is-this" class="slide level1">
+<h1>Pandocとは</h1>
+<ul>
+<li><a href="http://pandoc.org/index.html">Pandoc - About pandoc</a></li>
+<li>文書変換ツール
+<ul>
+<li>あるフォーマットで書かれた文書を、別のフォーマットに変換するツール</li>
+</ul></li>
+<li>Pandocの特徴は、対応フォーマットが非常に多いこと</li>
+</ul>
+</section>
+<section id="pandoc-flow" class="slide level1">
+<h1></h1>
+<figure>
+<img src="figure/pandoc_block.jpg" alt="Pandocの処理フロー" /><figcaption>Pandocの処理フロー</figcaption>
+</figure>
+</section>
+<section id="the-pandoc-diagram" class="slide level1">
+<h1></h1>
+<p><a href="http://pandoc.org/diagram.jpg"><img src="figure/pandoc_diagram.jpg" style="width:15.0%" /></a></p>
+</section>
+<section id="pandoc-impl" class="slide level1">
+<h1>Pandoc実装の概要</h1>
+<ul>
+<li>言語: Haskell
+<ul>
+<li>Pandoc的には、「厳密に型が定義されている」ことがありがたい</li>
+<li>Haskellは構文解析器(パーサ)を作るのにすごく適している (Parsecなど)</li>
+</ul></li>
+<li>モジュール構成
+<ul>
+<li>Reader: 入力文書を解析し、Haskell上の中間文書に変換する</li>
+<li>Writer: 中間文書を受け取り、出力フォーマットに変換する</li>
+</ul></li>
+</ul>
+</section>
+<section id="pandoc-flow2" class="slide level1">
+<h1></h1>
+<figure>
+<img src="figure/pandoc_block2.jpg" alt="Pandocの処理フロー" /><figcaption>Pandocの処理フロー</figcaption>
+</figure>
+</section>
+<section id="pandoc-install" class="slide level1">
+<h1>Pandocをインストールする</h1>
+<ul>
+<li>ターミナル(Mac/Linux)またはコマンドプロンプト(Windows)</li>
+<li>パッケージを直接落としてインストール
+<ul>
+<li><a href="https://github.com/jgm/pandoc/releases/latest">Pandoc ダウンロードページ</a>
+<ul>
+<li>Windows: <code>.msi</code>, Mac: <code>.pkg</code></li>
+</ul></li>
+</ul></li>
+<li>パッケージマネージャでインストール
+<ul>
+<li>Mac(<a href="http://brew.sh/index_ja.html">Homebrew</a>): <code>$ brew install pandoc</code></li>
+<li>Windows(<a href="https://chocolatey.org/">Chocolatey</a>): <code>&gt; cinst pandoc</code></li>
+<li>Linux(Debian): <code>$ sudo apt-get install pandoc</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="install-wkhtmltopdf" class="slide level1">
+<h1>wkhtmltopdfのインストール</h1>
+<ul>
+<li>PDF出力のために必要（おすすめ）</li>
+<li>パッケージを直接落としてインストール
+<ol type="1">
+<li><a href="http://wkhtmltopdf.org/downloads.html">ここからパッケージをダウンロード</a>
+<ul>
+<li>Windowsは未検証ですが、MinGWの方を試してみてください</li>
+</ul></li>
+<li>インストール</li>
+</ol></li>
+<li>パッケージマネージャでインストール
+<ul>
+<li>Mac: <code>$ brew cask install wkhtmltopdf</code>
+<ul>
+<li>Caskの方なので注意</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="try-pandoc" class="slide level1">
+<h1>Pandocで遊ぶ</h1>
+<pre><code>$ pandoc --version
+$ echo &quot;**Hello**&quot; | pandoc -f markdown -t html
+&lt;p&gt;&lt;strong&gt;Hello&lt;/strong&gt;&lt;/p&gt;
+$ echo &quot;**Hello**&quot; | pandoc -f markdown -t html5 -o hello.pdf
+（PDFが生成される）</code></pre>
+</section>
+<section id="head-pandoc-filter" class="slide level1">
+<h1>PandocのFilterとは</h1>
+</section>
+<section id="pandoc-filter" class="slide level1">
+<h1>PandocのFilterとは</h1>
+<ul>
+<li>ReaderとWriterの間で処理を行う外部プログラム
+<ul>
+<li>Unix/コマンドプロンプトのパイプを使って書ける</li>
+<li>JSON形式の文書(JSON AST)でやり取りする
+<ul>
+<li>Haskell以外の言語でも実装可能</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="pandoc-flow3" class="slide level1">
+<h1></h1>
+<figure>
+<img src="figure/pandoc_block3.jpg" alt="Pandocの処理フロー(Filter入り)" /><figcaption>Pandocの処理フロー(Filter入り)</figcaption>
+</figure>
+</section>
+<section id="pandoc-filter-command" class="slide level1">
+<h1>Filter: コマンドでいえば</h1>
+<pre><code>pandoc --filter ./hoge.py -t latex</code></pre>
+<p>と</p>
+<pre><code>pandoc -t json | ./hoge.py latex | pandoc -f json -t latex</code></pre>
+<p>は等価</p>
+</section>
+<section id="run-filter" class="slide level1">
+<h1>Filterを動かしてみよう</h1>
+<ul>
+<li><a href="https://github.com/jgm/pandocfilters/tree/master/examples">公式サンプル</a>から「<a href="https://github.com/jgm/pandocfilters/blob/master/examples/caps.py">caps.py</a>」を動かしてみる。
+<ul>
+<li>Pythonのpipを使用。環境がない人はデモだけ見て下さい</li>
+</ul></li>
+</ul>
+<pre><code>$ sudo pip install pandocfilters
+$ curl -O https://raw.githubusercontent.com/jgm/pandocfilters/master/examples/caps.py
+$ echo &#39;abc&#39; | pandoc --filter ./caps.py -t html
+&lt;p&gt;ABC&lt;/p&gt;</code></pre>
+</section>
+<section id="impl-of-capspy" class="slide level1">
+<h1>caps.py の実装</h1>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> pandocfilters <span class="im">import</span> toJSONFilter, Str
+
+<span class="kw">def</span> caps(key, value, <span class="bu">format</span>, meta):
+    <span class="cf">if</span> key <span class="op">==</span> <span class="st">&#39;Str&#39;</span>:
+        <span class="cf">return</span> Str(value.upper())
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:
+    toJSONFilter(caps)</code></pre></div>
+</section>
+<section id="how-to-impl-filter" class="slide level1">
+<h1>Filterを実装する手順</h1>
+<ul>
+<li>PandocのJSON ASTを読み込めるライブラリを使う
+<ul>
+<li>参考: <a href="https://github.com/jgm/pandoc/wiki/Pandoc-Filters">Pandoc Filters · jgm/pandoc Wiki</a></li>
+</ul></li>
+<li>次の仕様を満たす関数を実装し、<code>toJSONFilter</code>の引数に与える
+<ul>
+<li>引数を使い、変換前のJSON ASTを受け取る</li>
+<li>JSON ASTを変換（要素を追加・変更・削除）する</li>
+<li>変換後のJSON ASTを返す</li>
+</ul></li>
+<li>補足: <code>toJSONFilter</code>が、標準入力・標準出力を通じたJSON ASTのやりとりを代理してくれる</li>
+</ul>
+</section>
+<section id="head-learning-ast" class="slide level1">
+<h1>PandocのASTを知る</h1>
+</section>
+<section id="learning-ast" class="slide level1">
+<h1>PandocのASTを知る</h1>
+<ul>
+<li>厳密な仕様はここに載っています
+<ul>
+<li><a href="https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html">Text.Pandoc.Definition</a></li>
+<li>今回は割愛します（自分で実装したい際に参照してください）</li>
+</ul></li>
+</ul>
+</section>
+<section id="two-asts" class="slide level1">
+<h1>ASTは、厳密には2種類ある</h1>
+<ul>
+<li>JSON AST
+<ul>
+<li>ただのJSONなので、どの言語でも利用できる</li>
+<li>冗長、読むのがしんどい</li>
+</ul></li>
+<li>Pandoc Native形式
+<ul>
+<li>Haskellのデータ型<code>Pandoc</code>として定義される</li>
+<li>パターンマッチングが使える（うれしい）</li>
+<li>簡潔で読みやすい</li>
+</ul></li>
+</ul>
+</section>
+<section id="diff-ast" class="slide level1">
+<h1>ASTの比較</h1>
+<p>HTML</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p&gt;&lt;strong&gt;</span>test<span class="kw">&lt;/strong&gt;&lt;/p&gt;</span></code></pre></div>
+<p>JSON AST</p>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span><span class="dt">&quot;blocks&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">&quot;t&quot;</span><span class="fu">:</span><span class="st">&quot;Para&quot;</span><span class="fu">,</span><span class="dt">&quot;c&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">&quot;t&quot;</span><span class="fu">:</span><span class="st">&quot;Strong&quot;</span><span class="fu">,</span><span class="dt">&quot;c&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">&quot;t&quot;</span><span class="fu">:</span><span class="st">&quot;Str&quot;</span><span class="fu">,</span><span class="dt">&quot;c&quot;</span><span class="fu">:</span><span class="st">&quot;test&quot;</span><span class="fu">}</span><span class="ot">]</span><span class="fu">}</span><span class="ot">]</span><span class="fu">}</span><span class="ot">]</span><span class="fu">,</span><span class="dt">&quot;pandoc-api-version&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="dv">1</span><span class="ot">,</span><span class="dv">17</span><span class="ot">,</span><span class="dv">0</span><span class="ot">,</span><span class="dv">4</span><span class="ot">]</span><span class="fu">,</span><span class="dt">&quot;meta&quot;</span><span class="fu">:{}}</span></code></pre></div>
+<p>Pandoc Native</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">Para</span> [<span class="dt">Strong</span> [<span class="dt">Str</span> <span class="st">&quot;test&quot;</span>]]]</code></pre></div>
+</section>
+<section id="what-to-do-next-with-ast" class="slide level1">
+<h1>これからやりたいこと</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dt">Para</span> [<span class="dt">Strong</span> [<span class="dt">Str</span> <span class="st">&quot;test&quot;</span>]]]</code></pre></div>
+<ul>
+<li>このようなASTを変換するような関数を、Haskellで書きたい</li>
+</ul>
+</section>
+<section id="head-about-haskell" class="slide level1">
+<h1>Haskellの概要</h1>
+</section>
+<section id="head-helloworld-with-stack" class="slide level1">
+<h1>StackでHaskellのHelloWorldを書こう</h1>
+</section>
+<section id="head-writing-filter-with-haskell" class="slide level1">
+<h1>Pandoc FilterをHaskellで書こう</h1>
+</section>
+<section id="q-and-a" class="slide level1">
 <h1>質問・作業・もくもく会</h1>
 <ul>
 <li>Slackにて受け付けます （<code>#field</code>）</li>
@@ -104,6 +368,8 @@
       Reveal.initialize({
         // Display the page number of the current slide
         slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
         // Transition style
         transition: 'fade', // none/fade/slide/convex/concave/zoom
         // Transition speed
