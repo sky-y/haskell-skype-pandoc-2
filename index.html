@@ -422,7 +422,7 @@ $ echo &#39;abc&#39; | pandoc --filter ./caps.py -t html
 </ul>
 <p>→ 関数の振る舞いに対して、疑心暗鬼にならなくていい！！</p>
 </section>
-<section id="純粋関数型言語のデメリット" class="slide level1">
+<section id="pure-functional-cons" class="slide level1">
 <h1>純粋関数型言語のデメリット</h1>
 <ul>
 <li>他の言語で普通に書ける「状態をもつ変数」「手続き」を含む関数が「ふつう」に書けない
@@ -514,7 +514,7 @@ $ echo &#39;abc&#39; | pandoc --filter ./caps.py -t html
 <li><strong>要するに、今からHaskellを始めるなら、これ一択</strong></li>
 </ul>
 </section>
-<section id="stackのインストール" class="slide level1">
+<section id="install-stack" class="slide level1">
 <h1>Stackのインストール</h1>
 <ul>
 <li>Mac
@@ -624,7 +624,7 @@ main <span class="fu">=</span> toJSONFilter behead
 $ stack install --local-bin-path .
 $ pandoc pandoc-markdown-example.txt -f markdown --filter my-filter -o output.md</code></pre>
 </section>
-<section id="filterを自力で書くには" class="slide level1">
+<section id="write-filter-yourself" class="slide level1">
 <h1>Filterを自力で書くには</h1>
 <ul>
 <li><code>pandoc</code>コマンドで、入力文書をPandoc Native形式(<code>-t native</code>)で出してみる</li>

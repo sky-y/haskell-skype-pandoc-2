@@ -353,7 +353,7 @@ Prelude> map double [1,2,3,4,5]
 
 ----
 
-# 純粋関数型言語のデメリット
+# 純粋関数型言語のデメリット {#pure-functional-cons}
 
 - 他の言語で普通に書ける「状態をもつ変数」「手続き」を含む関数が「ふつう」に書けない
     - Hello Worldすらできない！？
@@ -431,7 +431,7 @@ Prelude> map double [1,2,3,4,5]
 
 ----
 
-# Stackのインストール
+# Stackのインストール {#install-stack}
 
 - Mac
     - `$ brew install haskell-stack`
@@ -553,7 +553,7 @@ $ pandoc pandoc-markdown-example.txt -f markdown --filter my-filter -o output.md
 
 ----
 
-# Filterを自力で書くには
+# Filterを自力で書くには {#write-filter-yourself}
 
 - `pandoc`コマンドで、入力文書をPandoc Native形式(`-t native`)で出してみる
 - [Text.Pandoc.Definition](https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html) を読んで、構造を理解する
