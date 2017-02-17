@@ -339,17 +339,385 @@ $ echo &#39;abc&#39; | pandoc --filter ./caps.py -t html
 <section id="head-about-haskell" class="slide level1">
 <h1>Haskellの概要</h1>
 </section>
+<section id="haskell-beginner1" class="slide level1">
+<h1>Haskellに対するイメージ</h1>
+<ul>
+<li>こわい</li>
+<li>難しい</li>
+<li>圏論わからん</li>
+</ul>
+</section>
+<section id="haskell-beginner2" class="slide level1">
+<h1>実際のHaskell（藤原の主観）</h1>
+<ul>
+<li>こわくないよ！</li>
+<li>（さすがにちょっと難しい）
+<ul>
+<li>書けばちょっと分かる</li>
+<li>「アホなままコード書いたらコンパイルが通らなくなる」安心感</li>
+</ul></li>
+<li>圏論分からないけど、Haskell書いてる</li>
+</ul>
+</section>
+<section id="haskell-caution" class="slide level1">
+<h1>注意</h1>
+<ul>
+<li>以下、藤原の偏見によるHaskell紹介です</li>
+<li>真面目にHaskellやっている方からは邪道に見えることをお許し下さい</li>
+</ul>
+</section>
+<section id="haskell-features" class="slide level1">
+<h1>Haskellは「関数型プログラミング養成ギブス」（持論）</h1>
+<ul>
+<li>Haskellは <strong>純粋関数型言語</strong> の代表
+<ul>
+<li>関数が第一（第一級オブジェクト）</li>
+<li>副作用がない、参照透明性が常に保たれる</li>
+</ul></li>
+</ul>
+</section>
+<section id="haskell-func-1st-object" class="slide level1">
+<h1>関数が第一（第一級オブジェクト）</h1>
+<p>関数そのものを</p>
+<ul>
+<li>変数に格納可能</li>
+<li>データ構造に格納可能</li>
+<li>名前が無くても存在できる（無名関数・ラムダ式）</li>
+<li>関数の引数として渡すことができる（高階関数）</li>
+<li>関数の返り値として返すことができる</li>
+</ul>
+</section>
+<section id="haskell-example" class="slide level1">
+<h1>関数の例</h1>
+<ul>
+<li>GHC(インタラクティブシェル)で試してみよう
+<ul>
+<li>ブラウザ上で<a href="https://ghc.io/">GHCi Online</a>を開こう</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- 関数doubleを定義</span>
+<span class="kw">let</span> double x <span class="fu">=</span> x <span class="fu">*</span> <span class="dv">2</span>  
+
+<span class="co">-- 関数mapの第1引数にdoubleを指定</span>
+<span class="dt">Prelude</span><span class="fu">&gt;</span> map double [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]  
+[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>]</code></pre></div>
+</section>
+<section id="haskell-side-effect" class="slide level1">
+<h1>副作用と参照透明性</h1>
+<ul>
+<li>副作用の例
+<ul>
+<li>出力 (C: <code>printf(&quot;Hello, world!&quot;)</code>)</li>
+<li>状態 (C: <code>i++</code>)
+<ul>
+<li>変数を読むタイミングによって、その中身が変わりうる</li>
+</ul></li>
+<li>これらは <strong>手続き</strong> (手順) として記述される</li>
+</ul></li>
+<li>参照透明性（関数について）
+<ul>
+<li>関数をいつ読んでも、必ず同じ結果が返ってくる</li>
+<li>関数の外に影響を与えない</li>
+</ul></li>
+</ul>
+<p>→ 関数の振る舞いに対して、疑心暗鬼にならなくていい！！</p>
+</section>
+<section id="純粋関数型言語のデメリット" class="slide level1">
+<h1>純粋関数型言語のデメリット</h1>
+<ul>
+<li>他の言語で普通に書ける「状態をもつ変数」「手続き」を含む関数が「ふつう」に書けない
+<ul>
+<li>Hello Worldすらできない！？</li>
+<li>乱数すら使えない！？</li>
+</ul></li>
+</ul>
+</section>
+<section id="haskell-the-monad" class="slide level1">
+<h1>そこで、モナドですよ</h1>
+</section>
+<section id="haskell-the-monad2" class="slide level1">
+<h1>モナドの役割</h1>
+<ul>
+<li>Haskellでは、あらゆる「状態を持つ変数」「手続き」などを「モナド」の中に閉じ込めた形で書くことができる
+<ul>
+<li>これにより「実用性」と「関数型言語の良さ」を両立できる</li>
+<li><del>圏論？知らない子ですね</del></li>
+</ul></li>
+</ul>
+</section>
+<section id="dragon-quest-2" class="slide level1">
+<h1>持論: モナドは乗り物</h1>
+<figure>
+<img src="figure/dragon-quest-2.jpg" alt="ドラクエ2の船" /><figcaption>ドラクエ2の船</figcaption>
+</figure>
+</section>
+<section id="haskell-monado-how" class="slide level1">
+<h1>モナドの使われ方</h1>
+<ul>
+<li>純粋関数だけの世界がデフォルト</li>
+<li>文字を出力したい（IOを使いたい）→IOモナドに「乗る」
+<ul>
+<li>実際にはJavaなどと同じように、main関数という特別なIOモナドに乗った状態からスタートする</li>
+</ul></li>
+<li>他のモナド
+<ul>
+<li>リスト、例外処理、状態、……、何もしない（！？）</li>
+</ul></li>
+</ul>
+</section>
+<section id="head-about-editors" class="slide level1">
+<h1>余談: エディタについて</h1>
+</section>
+<section id="about-editors" class="slide level1">
+<h1>エディタについて</h1>
+<ul>
+<li>Markdown: プレビューができるエディタがよい</li>
+<li>Haskell: 選択肢は比較的多い</li>
+<li>どちらも扱うなら、<a href="https://atom.io/">Atom</a>がおすすめ</li>
+</ul>
+</section>
+<section id="atom-recommended" class="slide level1">
+<h1>Atomのおすすめパッケージ（拡張機能）</h1>
+<p><code>apm install</code>コマンドでインストール可</p>
+<ul>
+<li>Markdown系
+<ul>
+<li>markdown-preview-enhanced
+<ul>
+<li>手軽ですごいプレビュー+エクスポート</li>
+</ul></li>
+<li>markdown-writer: 入力補助</li>
+</ul></li>
+<li>Haskell系
+<ul>
+<li>autocomplete-haskell</li>
+<li>language-haskell</li>
+</ul></li>
+<li>個人的好み
+<ul>
+<li>vim-mode-plus</li>
+<li>vim-mode-plus-ex-mode</li>
+</ul></li>
+</ul>
+</section>
 <section id="head-helloworld-with-stack" class="slide level1">
 <h1>StackでHaskellのHelloWorldを書こう</h1>
+</section>
+<section id="haskell-stack" class="slide level1">
+<h1>Stackとは</h1>
+<ul>
+<li>2017年現在、標準的に使われるビルドツール</li>
+<li>パッケージ間の依存関係を解消し、プロジェクトごとにコンパイラ(GHC)を設定できる
+<ul>
+<li>(Stackができる前は、依存関係の地獄(dependency hell)に簡単に陥る地獄があった……)</li>
+</ul></li>
+<li><strong>要するに、今からHaskellを始めるなら、これ一択</strong></li>
+</ul>
+</section>
+<section id="stackのインストール" class="slide level1">
+<h1>Stackのインストール</h1>
+<ul>
+<li>Mac
+<ul>
+<li><code>$ brew install haskell-stack</code></li>
+</ul></li>
+<li>Windows
+<ul>
+<li><a href="https://www.stackage.org/stack/windows-x86_64-installer">64-bit Installer</a>をダウンロードしてインストール</li>
+</ul></li>
+<li>その他
+<ul>
+<li><a href="https://docs.haskellstack.org/en/stable/README/">Home - The Haskell Tool Stack</a>を参照</li>
+</ul></li>
+</ul>
+</section>
+<section id="helloworld-stack" class="slide level1">
+<h1>StackでHello World</h1>
+<ul>
+<li>今回は、最もシンプルな<code>simple</code>テンプレートを使用
+<ul>
+<li>テンプレートによってフォルダ構成が変わるので注意</li>
+</ul></li>
+</ul>
+<pre><code>$ stack new hello simple
+$ cd hello
+$ stack setup
+$ stack build
+$ stack exec hello</code></pre>
+</section>
+<section id="see-source-helloworld" class="slide level1">
+<h1>ソースを見てみよう: src/Main.hs</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()  <span class="co">-- 関数の型宣言</span>
+main <span class="fu">=</span> <span class="kw">do</span>      <span class="co">-- 関数の定義</span>
+  putStrLn <span class="st">&quot;hello world&quot;</span></code></pre></div>
+<ul>
+<li>main関数から実行し始める</li>
+<li>main関数は<code>IO ()</code>型 （実はこれがIOモナド）</li>
+<li>コメントは<code>--</code>で始める</li>
+</ul>
 </section>
 <section id="head-writing-filter-with-haskell" class="slide level1">
 <h1>Pandoc FilterをHaskellで書こう</h1>
 </section>
+<section id="stack-custom-template" class="slide level1">
+<h1>Stackのカスタムテンプレートで準備</h1>
+<ul>
+<li>GitHubに用意しました: <a href="https://github.com/sky-y/stack-pandoc-filter">sky-y/stack-pandoc-filter</a></li>
+</ul>
+<pre><code>$ stack new my-filter https://raw.githubusercontent.com/sky-y/stack-pandoc-filter/master/pandoc-filter.hsfiles
+$ cd my-filter
+$ stack setup
+$ stack build
+（10分ぐらいかかるかも……）
+$ stack install --local-bin-path .</code></pre>
+</section>
+<section id="haskell-sample-md" class="slide level1">
+<h1>サンプルMarkdownをHaskellで表現</h1>
+<pre><code>$ pandoc pandoc-markdown-example.txt -f markdown -t native</code></pre>
+<ul>
+<li>これがHaskell内部における形式（<code>Pandoc</code>型のデータ）</li>
+</ul>
+</section>
+<section id="try-filter" class="slide level1">
+<h1>Filterを試してみる</h1>
+<pre><code>$ pandoc pandoc-markdown-example.txt -f markdown --filter my-filter -o output.md</code></pre>
+<ul>
+<li>h2, h3見出しが<code>*このように*</code>変わっているはず</li>
+</ul>
+</section>
+<section id="see-source-filter" class="slide level1">
+<h1>ソースを見てみよう: src/Main.hs</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+
+<span class="kw">import </span><span class="dt">Text.Pandoc.JSON</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> toJSONFilter behead
+  <span class="kw">where</span> behead (<span class="dt">Header</span> n _ xs) <span class="fu">|</span> n <span class="fu">&gt;=</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dt">Para</span> [<span class="dt">Emph</span> xs]
+        behead x <span class="fu">=</span> x  <span class="co">-- デフォルト（何もしない）</span></code></pre></div>
+<ul>
+<li>いじるのは<code>behead</code>関数だけ</li>
+<li><code>behead</code>関数は、<strong>パターンにマッチする部分</strong>について引数を取る
+<ul>
+<li>その部分に対して変更したものを返す</li>
+</ul></li>
+<li>今回の場合、「見出しレベルが2以上(<code>h2</code>以上)」を、「強調（斜体）で返す」
+<ul>
+<li>HTMLでいえば <code>&lt;h2&gt;hoge&lt;/h2&gt;</code>→<code>&lt;p&gt;&lt;em&gt;hoge&lt;/em&gt;&lt;/p&gt;</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="customize-header" class="slide level1">
+<h1>カスタマイズしてみよう</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> toJSONFilter behead
+  <span class="kw">where</span> behead (<span class="dt">Header</span> n _ xs) <span class="fu">|</span> n <span class="fu">&gt;=</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dt">Para</span> [<span class="dt">Strong</span> xs]
+        behead x <span class="fu">=</span> x  <span class="co">-- デフォルト（何もしない）</span></code></pre></div>
+<ul>
+<li><code>Emph xs</code> → <code>Strong xs</code>
+<ul>
+<li>意味: <em>斜体</em> <code>*斜体*</code> → <strong>強調</strong> <code>**強調**</code></li>
+</ul></li>
+</ul>
+<pre><code>$ stack build
+$ stack install --local-bin-path .
+$ pandoc pandoc-markdown-example.txt -f markdown --filter my-filter -o output.md</code></pre>
+</section>
+<section id="filterを自力で書くには" class="slide level1">
+<h1>Filterを自力で書くには</h1>
+<ul>
+<li><code>pandoc</code>コマンドで、入力文書をPandoc Native形式(<code>-t native</code>)で出してみる</li>
+<li><a href="https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html">Text.Pandoc.Definition</a> を読んで、構造を理解する</li>
+<li>目的の構造を下書きしてみる</li>
+<li>Haskellで書く（ほぼそのまま書けるはず）</li>
+</ul>
+</section>
+<section id="hatena-filter" class="slide level1">
+<h1>実用例: はてなブログMarkdown用フィルタ</h1>
+<ul>
+<li>書きました: <a href="https://github.com/sky-y/pandoc-hateblo">sky-y/pandoc-hateblo: はてなブログ用Pandocフィルタ</a></li>
+<li>はてなブログの仕様に合わせるフィルタ
+<ul>
+<li>見出しを<code>h3</code>始まりにする</li>
+<li><code>h3</code>〜<code>h5</code>以外の見出しを、ただのテキストにする</li>
+</ul></li>
+<li>個人的には、WorkFlowy（アウトライナー）→OPMLでエクスポートしてから、Pandocに通している</li>
+<li>時間があればデモ</li>
+</ul>
+</section>
+<section id="hatena-filter-code" class="slide level1">
+<h1></h1>
+<p><a href="https://github.com/sky-y/pandoc-hateblo/blob/master/src/Lib.hs">pandoc-hateblo/Lib.hs at master · sky-y/pandoc-hateblo</a></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">hateblo <span class="fu">=</span> toJSONFilter (behead <span class="fu">&lt;$&gt;</span> shiftHeader)
+  <span class="kw">where</span> behead (<span class="dt">Header</span> n _ xs) <span class="fu">|</span> n <span class="fu">&gt;=</span> <span class="dv">5</span> <span class="fu">=</span> <span class="dt">Para</span> xs
+        behead x <span class="fu">=</span> x
+
+        shiftHeader (<span class="dt">Header</span> n attr xs) <span class="fu">|</span> n <span class="fu">&gt;=</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dt">Header</span> (n <span class="fu">+</span> <span class="dv">1</span>) attr xs
+        shiftHeader x <span class="fu">=</span> x</code></pre></div>
+</section>
+<section id="head-for-future-study" class="slide level1">
+<h1>今後の学習のための情報源</h1>
+</section>
+<section id="for-future-study1" class="slide level1">
+<h1>今後の学習のための情報源1</h1>
+<ul>
+<li>Stackの使い方
+<ul>
+<li>公式チュートリアル（強く推奨） <a href="https://docs.haskellstack.org/en/stable/README/">Home - The Haskell Tool Stack</a></li>
+<li><a href="http://qiita.com/tanakh/items/6866d0f570d0547df026">Haskellのビルドツール&quot;stack&quot;の紹介 - Qiita</a></li>
+</ul></li>
+<li>Haskell初心者向けWebページ
+<ul>
+<li><a href="http://qiita.com/arowM/items/9ebfb7cafecd99290663">こわくないHaskell入門（初級） - Qiita</a></li>
+<li><a href="http://qiita.com/arowM/items/33245802f9305a73082e">こわくないHaskell入門(初級その2) - Qiita</a></li>
+<li><a href="http://qiita.com/ruicc/items/6ba44359d86c3bf84492">モナド入門以前 - Qiita</a></li>
+<li><a href="http://qiita.com/hiruberuto/items/8bbc0343bf794c368287">モナドはポケモン。数学が出てこないモナド入門 - Qiita</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="for-future-study2" class="slide level1">
+<h1>今後の学習のための情報源2</h1>
+<ul>
+<li>Haskell初心者向けの本
+<ul>
+<li><a href="http://www.amazon.co.jp/dp/4274068854/">すごいHaskellたのしく学ぼう!</a></li>
+<li>通称：すごいH本</li>
+<li>実行環境が古い（Stackでない）ので注意</li>
+</ul></li>
+<li><a href="http://haskellbook.com/">Haskell Programming from first principles</a>
+<ul>
+<li>英語・電子書籍</li>
+<li>おすすめ。意外と分かりやすいです</li>
+<li>大阪で読書会やってます（宣伝・初心者歓迎）
+<ul>
+<li>2/22 <a href="https://umekitahs.connpass.com/event/50751/">基礎からはじめる Haskell Programming #15 - connpass</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="for-future-study3" class="slide level1">
+<h1>今後の学習のための情報源3</h1>
+<ul>
+<li>Haskellをさらに知る
+<ul>
+<li>lotz84さんのまとめ（すごい）
+<ul>
+<li><a href="https://github.com/lotz84/haskell">lotz84/haskell: Haskell 俯瞰まとめ</a></li>
+</ul></li>
+<li><a href="https://lotz84.github.io/haskellbyexample/">Haskell by Example</a></li>
+</ul></li>
+<li>モナドを理解する
+<ul>
+<li><a href="http://the.igreque.info/posts/2016/04-monad-in-java.html">igreque : Info -&gt; JavaでMonadをはじめからていねいに</a></li>
+</ul></li>
+</ul>
+</section>
 <section id="q-and-a" class="slide level1">
 <h1>質問・作業・もくもく会</h1>
 <ul>
-<li>Slackにて受け付けます （<code>#field</code>）</li>
-<li>TwitterでもOKです
+<li><strong>Slack（<code>#field</code>）に書いて下さい</strong></li>
+<li>終了後: TwitterでもOKで
 <ul>
 <li><a href="https://twitter.com/sky_y">@sky_y | Twitter</a></li>
 </ul></li>
@@ -370,6 +738,8 @@ $ echo &#39;abc&#39; | pandoc --filter ./caps.py -t html
         slideNumber: true,
         // Push each slide change to the browser history
         history: true,
+        // Vertical centering of slides
+        center: true,
         // Transition style
         transition: 'fade', // none/fade/slide/convex/concave/zoom
         // Transition speed
