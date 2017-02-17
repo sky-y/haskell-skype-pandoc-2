@@ -324,7 +324,7 @@ Pandoc Native
 
 # 関数の例 {#haskell-example}
 
-- GHC(インタラクティブシェル)で試してみよう
+- GHCi(インタラクティブシェル)で試してみよう
     - ブラウザ上で[GHCi Online](https://ghc.io/)を開こう
 
 ```haskell
