@@ -1,3 +1,10 @@
+## Pandocチュートリアル 第2回 (2017-02-17)
+
+- スライド(HTMLプレゼンテーション): <https://sky-y.github.io/haskell-skype-pandoc-2/>
+- スライド(復習用): [haskell-skype-pandoc-2/index_github.md](https://github.com/sky-y/haskell-skype-pandoc-2/blob/master/index_github.md)
+- GitHubリポジトリ全体: [sky-y/haskell-skype-pandoc-2](https://github.com/sky-y/haskell-skype-pandoc-2)
+
+
 ## 内容
 
 マークアップ形式のドキュメントを変換する、Haskell製のツール [Pandoc](https://pandoc.org/) に関する勉強会です。発表は、Pandocユーザーズガイド の日本語訳をなさっている [@sky\_y](https://twitter.com/sky_y) さんに行なっていただきます。
