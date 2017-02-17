@@ -540,6 +540,17 @@ main = toJSONFilter behead
         behead x = x  -- デフォルト（何もしない）
 ```
 
+------------------------------------------------------------------------
+
+ソースを見てみよう: src/Main.hs
+===============================
+
+``` haskell
+main = toJSONFilter behead
+  where behead (Header n _ xs) | n >= 2 = Para [Emph xs]
+        behead x = x  -- デフォルト（何もしない）
+```
+
 -   いじるのは`behead`関数だけ
 -   `behead`関数は、**パターンにマッチする部分**について引数を取る
     -   その部分に対して変更したものを返す

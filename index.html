@@ -597,6 +597,12 @@ $ stack install --local-bin-path .</code></pre>
 main <span class="fu">=</span> toJSONFilter behead
   <span class="kw">where</span> behead (<span class="dt">Header</span> n _ xs) <span class="fu">|</span> n <span class="fu">&gt;=</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dt">Para</span> [<span class="dt">Emph</span> xs]
         behead x <span class="fu">=</span> x  <span class="co">-- デフォルト（何もしない）</span></code></pre></div>
+</section>
+<section id="see-source-filter1" class="slide level1">
+<h1>ソースを見てみよう: src/Main.hs</h1>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> toJSONFilter behead
+  <span class="kw">where</span> behead (<span class="dt">Header</span> n _ xs) <span class="fu">|</span> n <span class="fu">&gt;=</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dt">Para</span> [<span class="dt">Emph</span> xs]
+        behead x <span class="fu">=</span> x  <span class="co">-- デフォルト（何もしない）</span></code></pre></div>
 <ul>
 <li>いじるのは<code>behead</code>関数だけ</li>
 <li><code>behead</code>関数は、<strong>パターンにマッチする部分</strong>について引数を取る
